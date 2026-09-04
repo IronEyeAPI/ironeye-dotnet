@@ -1,0 +1,23 @@
+# The build this repository has to pass. It runs on the supported floor and the
+# current release of the toolchain, because a client library that only builds on
+# the version its author happened to have installed is a support ticket waiting.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - run: dotnet restore
+      # Warnings are errors in the project file, so this is the lint too.
+      - run: dotnet build --no-restore --configuration Release
+      - run: dotnet pack --no-build --configuration Release
