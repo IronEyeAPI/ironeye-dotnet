@@ -20,7 +20,17 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/IronEyeAPI/ironeye-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <!-- The README is what nuget.org renders on the package page. Without it
+         the listing is a one-line description and a version number, which is
+         the first thing a reader sees and the last thing that persuades them. -->
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>ironeye;document-intelligence;pii;ocr;invoice;api-client</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="LICENSE" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <!-- The abstraction only. A client library that pulls in a logging
